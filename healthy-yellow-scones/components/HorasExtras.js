@@ -3,6 +3,7 @@ import {View, Text, TextInput, StyleSheet, Button, Image} from 'react-native'
 
 const CalculosHoras = () => {
   const [salario, setSalario] = useState(0)
+  const [salarioBase, setSalarioBase] = useState(0)
   const [horasMes, setHorasMes] = useState(0)
 
   return(
@@ -11,6 +12,13 @@ const CalculosHoras = () => {
       <View style={estilos.viewimagem}>
         <Image style={estilos.imagem} source={require('../assets/bgHora.jpg')} />
       </View >
+      <Text style={estilos.texto2}>Digite o seu salario base</Text>
+      <TextInput
+        value={salarioBase}
+        onChangeText={setSalarioBase}
+        placeholder="Salario Base"
+        style={estilos.input}
+      />
       <Text style={estilos.texto}>CALCULO DE HORAS TRABALHADAS</Text>
       <Text style={estilos.texto2}>Digite a quantidade de horas que você trabalhou</Text>
       <TextInput
@@ -24,13 +32,19 @@ const CalculosHoras = () => {
           title="Ver"
           color="#9ACD32"
           onPress={() => {
-            if (horasMes == 160)
-            setSalario(2000)
+            let horas = salarioBase / 160
+            let horasExtra = horas + (horas / 2)  
+            if (horasMes <= 160){
+              setSalario(salarioBase)
+            }else
+            {            
+              setSalario((horasMes - 160) * (horasExtra) + +salarioBase)
+            }
             }}
 
         />
          </View>
-      <Text>O valor total do salario é de ${salario.toFixed(2)} reais</Text>
+      <Text>O valor total do salario é de R${salario} reais</Text>
     </View>
   )
 }
