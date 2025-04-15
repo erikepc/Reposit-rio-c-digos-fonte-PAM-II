@@ -2,11 +2,12 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 
 import CalculosHoras from './components/HorasExtras';
 import Pedagio from './components/pedagio';
+import Tabuleiro from './components/tabuleiro';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-        <Pedagio />
+        <Tabuleiro />
     </SafeAreaView>
   );
 }
