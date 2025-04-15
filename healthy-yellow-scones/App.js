@@ -6,7 +6,7 @@ import Pedagio from './components/pedagio';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-        <CalculosHoras />
+        <Pedagio />
     </SafeAreaView>
   );
 }

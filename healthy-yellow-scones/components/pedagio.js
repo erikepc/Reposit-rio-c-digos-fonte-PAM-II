@@ -2,23 +2,31 @@ import {useState} from 'react'
 import {View, Text, TextInput, StyleSheet, Button, Image} from 'react-native'
 
 const pedagio = () => {
-  const [tipo, setTipo] = useState(0)
-  const [distancia, setDistancia] = useState(0)
+  const [tipo, setTipo] = useState()
+  const [distancia, setDistancia] = useState()
   const [total, setTotal] = useState(0)
   return(
     
     <View style={estilos.container}>
+      <View style={estilos.viewimagem}>
+              <Image style={estilos.imagem} source={require('../assets/pedg.jpg')} />
+            </View >
       <Text>Simulador de Pedágio</Text>
+      <Text>Digite o tipo do seu veículo{"\n"}
+        [1] carro{"\n"}
+        [2] moto{"\n"}
+        [3] caminhão
+      </Text>
       <TextInput
         value={tipo}
         onChangeText={setTipo}
-        placeholder="Digite o tipo do seu veículo"
+        placeholder="tipo do seu veículo"
         style={estilos.input}
       />
       <TextInput
         value={distancia}
         onChangeText={setDistancia}
-        placeholder="Digite a distância percorrida"
+        placeholder="distância percorrida"
         style={estilos.input}
       />
       <View style={estilos.botao}>
@@ -26,11 +34,14 @@ const pedagio = () => {
           title="Total a Pagar"
           color="purple"
           onPress={() => {
-            if (tipo == "carro") {
+            if (tipo == 1) {
+              setTipo("carro")
               setTotal(distancia * 0.10)
-             } else if ( tipo == "moto"){
+             } else if ( tipo == 2){
+              setTipo("moto")
               setTotal(distancia * 0.05)  
-             } else if(tipo == "caminhao"){
+             } else if(tipo == 3){
+              setTipo("caminhão")
                 setTotal(distancia * 0.15)
              } else {
                 setTotal(<Text> Inválido! Os tipos de veículos válidos são: Carro, Moto ou Caminhão.</Text>)
@@ -40,7 +51,9 @@ const pedagio = () => {
           }
         />
          </View> 
-         
+          <Text>Tipo de veiculo: {tipo}</Text>
+          <Text>Distancia percorrida: {distancia}km</Text>
+          <Text>O valor total do pedagio a pagar é de R${total} reais</Text>
     </View>
   )
 }
@@ -51,7 +64,7 @@ const estilos = StyleSheet.create({
   },
   input: {
     backgroundColor: "white",
-    maxWidth: "65px",
+    maxWidth: "200px",
     padding: "2px",
     margin: "8px"
   },
@@ -63,8 +76,8 @@ const estilos = StyleSheet.create({
 
   },
   imagem: {
-    width: 500,
-    height: 400,
+    width: 400,
+    height: 300,
     resizeMode: "contain"
   }
 })
