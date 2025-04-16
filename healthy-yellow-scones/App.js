@@ -3,11 +3,12 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import CalculosHoras from './components/HorasExtras';
 import Pedagio from './components/pedagio';
 import Tabuleiro from './components/tabuleiro';
+import Tarifa from './components/tarifaLuz';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-        <Tabuleiro />
+        <Tarifa />
     </SafeAreaView>
   );
 }
